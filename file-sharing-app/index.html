@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase SDKs (COMPAT VERSION - Correct) -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><img src="Droply_logo-removebg-preview.png" class="logo"/></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Encrypt/Decrypt<span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Password Generator<span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<section class="upload-container">
+    <div class="drop-zone">
+        <div class="icon-container">
+            <img src="file.svg" alt="file-icon" class="center" draggable="false">
+            <img src="file.svg" alt="file-icon" class="left" draggable="false">
+            <img src="file.svg" alt="file-icon" class="right" draggable="false">
+        </div>
+
+        <input type="file" id="chooseFile">
+        <div class="title">Drop your file here or, <span class="browseBtn">browse</span></div>    
+    </div>    
+</section>
+
+<div class="progress-area" id="progressArea">
+    <div class="progress-box">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">0%</div>
+</div>
+
+
+
+<div id="filePreview" class="file-preview" style="display:none;">
+    
+    <img id="imageThumb" class="image-thumb" style="display:none;" />
+
+    <div id="fileIcon" class="preview-icon">📄</div>
+
+    <div class="preview-details">
+        <p id="fileName"></p>
+        <p id="fileSize"></p>
+    </div>
+
+    <a id="downloadLink" href="#" download class="preview-download">View</a>
+</div>
+
+
+
+<script>
+//  Firebase configuration (correct & updated)
+const firebaseConfig = {
+    apiKey: "AIzaSyDOzsVJEd9AFWY0Jogbp5us6q6xXeit85E",
+    authDomain: "fileshare-b0e2c.firebaseapp.com",
+    projectId: "fileshare-b0e2c",
+    storageBucket: "fileshare-b0e2c.firebasestorage.app",
+    messagingSenderId: "478400514914",
+    appId: "1:478400514914:web:4a93329746e06cea62fa3b"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Cloud Storage
+const storage = firebase.storage();
+
+</script>
+
+<script src="index.js"></script>
+
+</body>
+</html>
